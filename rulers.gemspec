@@ -28,4 +28,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rack", "~>2.2"
   spec.add_dependency "webrick", "~>1.3"
+  spec.add_development_dependency "rack-test", '~> 0.6.3'
+  spec.add_development_dependency "minitest", '~> 5.17'
 end
