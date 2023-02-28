@@ -17,4 +17,12 @@ class RulersAppTest < Minitest::Test
     body = last_response.body
     assert body["Hello"]
   end
+
+  def test_faulty_request
+    get '/slamma'
+
+    assert last_response.ok?
+    body = last_response.body
+    assert !body["goodbye"]
+  end
 end
