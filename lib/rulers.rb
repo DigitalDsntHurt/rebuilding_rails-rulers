@@ -19,7 +19,16 @@ module Rulers
 
       klass, action = get_controller_and_action(env)
       controller = klass.new(env)
-      text = controller.send(action)
+
+      begin
+        text = controller.send(action)
+      rescue
+        return [
+          500,
+          {'Content-Type' => 'text/html'},
+          ["You're in big, BIG trouble mister!"]
+        ]
+      end
 
       [
         200,
