@@ -17,10 +17,17 @@ module Rulers
         ]
       end
 
+      if env['PATH_INFO'] == '/'
+        return '/quotes/a_quote'
+      end
+
       klass, action = get_controller_and_action(env)
       controller = klass.new(env)
       text = controller.send(action)
 
+      # # Here's one way to handle errors
+      # # If controller.send() returns an error
+      # # we rescue it and return a 500 code with a custom error message
       # begin
       #   text = controller.send(action)
       # rescue
