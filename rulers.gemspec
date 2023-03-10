@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Gem summary"
   spec.description = "Gem description (longer)"
   spec.homepage = "https://example.com"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 3.0.3"
   spec.license = "Nonstandard"
   spec.metadata["homepage_uri"] = spec.homepage
 
