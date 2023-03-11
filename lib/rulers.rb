@@ -31,14 +31,27 @@ module Rulers
       # end
 
 
+      # # Here's one approach to handling the root route
+      # # this approach passes in a dummy env object {"PATH_INFO"=>"/quotes/a_quote"}
+      # # which results in '/' rendering '/quotes/a_quote'
+      # if env['PATH_INFO'] == '/'
+      #   klass, action = get_controller_and_action({"PATH_INFO"=>"/quotes/a_quote"})
+      #   controller = klass.new(env)
+      #   text = controller.send(action)
+      #   return [
+      #     200,
+      #     { 'Content-Type' => 'text/html' },
+      #     [text]
+      #   ]
+      # end
+
+      # Here's another approach to handling the root route
+      # 
       if env['PATH_INFO'] == '/'
-        klass, action = get_controller_and_action({"PATH_INFO"=>"/quotes/a_quote"})
-        controller = klass.new(env)
-        text = controller.send(action)
         return [
           200,
           { 'Content-Type' => 'text/html' },
-          [text]
+          [File.read('public/index.html')]
         ]
       end
       
