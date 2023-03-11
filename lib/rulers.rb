@@ -3,6 +3,7 @@
 require_relative "rulers/version"
 require 'rulers/array'
 require 'rulers/routing'
+require_relative 'rulers/file_paths'
 
 module Rulers
   class Application
@@ -46,12 +47,12 @@ module Rulers
       # end
 
       # Here's another approach to handling the root route
-      # 
+      # This time we create an html file in public/html and read it in from the response
       if env['PATH_INFO'] == '/'
         return [
           200,
           { 'Content-Type' => 'text/html' },
-          [File.read('public/index.html')]
+          [Rulers::FilePaths.public_html]
         ]
       end
       
