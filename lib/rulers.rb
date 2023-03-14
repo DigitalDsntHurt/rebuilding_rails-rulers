@@ -48,14 +48,37 @@ module Rulers
 
       # Here's another approach to handling the root route
       # This time we create an html file in public/html and read it in from the response
+      # if env['PATH_INFO'] == '/'
+      #   return [
+      #     200,
+      #     { 'Content-Type' => 'text/html' },
+      #     [Rulers::FilePaths.public_html]
+      #   ]
+      # end
+
+      # # don't use this approach
+      # # this def don't work
+      # if env['PATH_INFO'] == '/'
+      #   klass, action = get_controller_and_action({"PATH_INFO"=>"/home/index"})
+      #   controller = klass.new(env)
+      #   text = controller.send(action)
+      #   return [
+      #     200,
+      #     { 'Content-Type' => 'text/html' },
+      #     [text]
+      #   ]
+      # end
+
+      # this approach redirects requests to another url
+      # https://stackoverflow.com/questions/32234377/how-to-perform-an-http-redirect-302-using-rack
       if env['PATH_INFO'] == '/'
         return [
-          200,
-          { 'Content-Type' => 'text/html' },
-          [Rulers::FilePaths.public_html]
+          302,
+          { 'Location' => 'https://same.energy/search?i=Wept' },
+          []
         ]
       end
-      
+
       klass, action = get_controller_and_action(env)
       controller = klass.new(env)
       text = controller.send(action)
